@@ -1,61 +1,77 @@
-:root {
-    --primary-color: #ffafbd;
-    --secondary-color: #ffc3a0;
-    --text-color: #5d5d5d;
-}
-
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--text-color);
-    overflow: hidden;
+    min-height: 100vh;
+    /* Un rosado mucho más intenso y elegante */
+    background: linear-gradient(135deg, #b04b5a 0%, #d46a7e 100%);
+    font-family: 'Arial', sans-serif;
 }
 
-.container {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    text-align: center;
-    max-width: 400px;
+.card {
+    background-color: #fff9f0; /* Color crema suave */
     width: 90%;
-}
-
-.photo-frame img {
-    width: 100%;
+    max-width: 450px;
+    padding: 30px;
     border-radius: 15px;
-    margin: 20px 0;
-    border: 5px solid white;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    text-align: center;
+    border: 2px solid #f2d1d7;
 }
 
-#magic-btn {
-    background-color: #ff6b6b;
+.title {
+    color: #b04b5a;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #7d5a5a;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.photo-container {
+    border: 8px solid white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.main-photo {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s;
+}
+
+.main-photo:hover {
+    transform: scale(1.05);
+}
+
+.text-area {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border-left: 5px solid #d46a7e;
+}
+
+#surprise-btn {
+    background-color: #b04b5a;
     color: white;
     border: none;
-    padding: 12px 24px;
-    border-radius: 25px;
+    padding: 15px 25px;
+    border-radius: 30px;
+    font-weight: bold;
     cursor: pointer;
-    font-size: 1rem;
-    transition: transform 0.3s ease;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(176, 75, 90, 0.4);
 }
 
-#magic-btn:hover {
-    transform: scale(1.1);
-}
-
-/* Animación de entrada */
-.fade-in {
-    animation: fadeIn 2s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+#surprise-btn:hover {
+    background-color: #d46a7e;
+    transform: translateY(-3px);
 }
