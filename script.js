@@ -1,47 +1,49 @@
-const btn = document.getElementById('magic-btn');
-const text = document.getElementById('dynamic-text');
+const btn = document.getElementById('surprise-btn');
+const messageArea = document.getElementById('message');
 
-const extraMessages = [
-    "Eres mi inspiración diaria. ✨",
-    "¡Gracias por tus consejos! 🌸",
-    "Te quiero más de lo que las palabras pueden decir. 💖",
-    "Hoy celebramos tu alegría. 🥂"
+const phrases = [
+    "¡Eres la reina de la casa! 👑",
+    "Gracias por tus abrazos mágicos. 🤗",
+    "Tu comida es mi lugar favorito. 🍲",
+    "Te amo hoy, mañana y siempre. ✨"
 ];
 
 btn.addEventListener('click', () => {
-    // Cambiar texto aleatoriamente
-    const randomMsg = extraMessages[Math.floor(Math.random() * extraMessages.length)];
-    text.innerText = randomMsg;
+    // Cambia el mensaje
+    const randomIndex = Math.floor(Math.random() * phrases.length);
+    messageArea.innerText = phrases[randomIndex];
 
-    // Crear elementos flotantes
-    createFloatingElement();
+    // Lluvia de flores/corazones
+    for (let i = 0; i < 15; i++) {
+        createParticle();
+    }
 });
 
-function createFloatingElement() {
-    const heart = document.createElement('div');
-    heart.innerHTML = '🌸'; // Puedes usar '❤️' o '✨'
-    heart.style.position = 'fixed';
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.bottom = '0';
-    heart.style.fontSize = Math.random() * 20 + 20 + 'px';
-    heart.style.animation = 'float 3s linear forwards';
-    heart.style.zIndex = '1000';
+function createParticle() {
+    const particle = document.createElement('div');
+    const isHeart = Math.random() > 0.5;
     
-    document.body.appendChild(heart);
+    particle.innerHTML = isHeart ? '❤️' : '🌸';
+    particle.style.position = 'fixed';
+    particle.style.left = Math.random() * 100 + 'vw';
+    particle.style.top = '-5vh';
+    particle.style.fontSize = Math.random() * 20 + 10 + 'px';
+    particle.style.opacity = Math.random();
+    particle.style.zIndex = '100';
+    
+    // Animación de caída
+    const duration = Math.random() * 2 + 3;
+    particle.style.transition = `transform ${duration}s linear, opacity ${duration}s`;
+    
+    document.body.appendChild(particle);
 
+    // Ejecutar la caída
     setTimeout(() => {
-        heart.remove();
-    }, 3000);
-}
+        particle.style.transform = `translateY(110vh) rotate(${Math.random() * 360}deg)`;
+    }, 100);
 
-// Agregar la animación al CSS dinámicamente
-const style = document.createElement('style');
-style.innerHTML = `
-    @keyframes float {
-        to {
-            transform: translateY(-100vh) rotate(360deg);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
+    // Limpiar el DOM
+    setTimeout(() => {
+        particle.remove();
+    }, duration * 1000);
+}
